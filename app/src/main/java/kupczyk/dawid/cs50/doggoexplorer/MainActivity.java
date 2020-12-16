@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     JSONArray responseObject;
     JSONObject entry;
     ArrayList<String> dogBreeds = new ArrayList<String>();
+    String dogOfTheMomentImgUrl = "";
+    int dogOfTheMomentId;
 
 
     @Override
@@ -57,10 +59,10 @@ public class MainActivity extends AppCompatActivity {
                         responseObject = new JSONArray(response);
                         entry = (JSONObject) responseObject.get((int)((Math.random() * (responseObject.length())) + 0));
                         JSONObject weight = entry.getJSONObject("weight");
-                        JSONObject imagedata = entry.getJSONObject("image");
-                        JSONObject height = entry.getJSONObject("height");
                         testText.setText(entry.get("name").toString());
-                        Picasso.get().load(imagedata.getString("url")).into(dogOfTheMomentIV);
+                        dogOfTheMomentImgUrl = entry.getJSONObject("image").getString("url");
+                        dogOfTheMomentId = entry.getInt("id");
+                        Picasso.get().load(dogOfTheMomentImgUrl).into(dogOfTheMomentIV);
 
                         for(int i = 0; i < responseObject.length()-1; i++){
                             JSONObject sample = (JSONObject) responseObject.get(i);
@@ -89,6 +91,13 @@ public class MainActivity extends AppCompatActivity {
     public void breedListBtnClicked(View view) {
         Intent i = new Intent(this, DogListActivity.class);
         i.putStringArrayListExtra("breeds_list",dogBreeds);
+        startActivity(i);
+    }
+
+    public void learnMoreBtnClicked(View view) {
+        Intent i = new Intent(this, LearnMoreActivity.class);
+        i.putExtra("img_url",dogOfTheMomentImgUrl);
+        i.putExtra("dog_id", dogOfTheMomentId);
         startActivity(i);
     }
 }
