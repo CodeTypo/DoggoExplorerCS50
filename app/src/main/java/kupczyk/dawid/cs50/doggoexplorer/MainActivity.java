@@ -1,18 +1,16 @@
 package kupczyk.dawid.cs50.doggoexplorer;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
@@ -29,13 +27,12 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    JSONArray responseObject;
-    ArrayList<String> dogBreeds = new ArrayList<String>();
-    String imgUrl = "";
-    int id;
-    String name="";
-    List<Dog> dogList = new ArrayList<Dog>();
-    Dog dogOfTheMoment;
+    private JSONArray responseObject;
+    private String imgUrl = "";
+    private int id;
+    private String name="";
+    private List<Dog> dogList = new ArrayList<>();
+    private Dog dogOfTheMoment;
 
 
     @Override
@@ -73,11 +70,6 @@ public class MainActivity extends AppCompatActivity {
                         dogOfTheMoment = dogList.get((int)(dogList.size() * Math.random())-1);
                         testText.setText(dogOfTheMoment.getName());
                         Picasso.get().load(dogOfTheMoment.getImageUrl()).into(dogOfTheMomentIV);
-
-                        for(int i = 0; i < responseObject.length()-1; i++){
-                            JSONObject sample = (JSONObject) responseObject.get(i);
-                            dogBreeds.add(sample.get("name").toString());
-                        }
 
                     } catch (JSONException e) {
                         e.printStackTrace();

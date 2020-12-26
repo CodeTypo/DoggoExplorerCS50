@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 
 public class DogListActivity extends AppCompatActivity implements DogListAdapter.onDogListener {
-    ArrayList<Dog> dogList;
+    private ArrayList<Dog> dogList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

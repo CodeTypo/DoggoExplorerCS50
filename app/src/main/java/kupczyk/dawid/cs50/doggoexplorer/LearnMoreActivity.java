@@ -23,8 +23,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class LearnMoreActivity extends AppCompatActivity {
 
@@ -40,7 +38,6 @@ public class LearnMoreActivity extends AppCompatActivity {
         Dog dog = (Dog) i.getSerializableExtra("dogObject");
         String img_url = dog.getImageUrl();
         if(img_url.isEmpty())img_url = "https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg";
-        int id = dog.getId();
         String dogName = dog.getName();
         final String[] info = {""};
 
@@ -52,12 +49,11 @@ public class LearnMoreActivity extends AppCompatActivity {
         Picasso.get().load(img_url).into(dogImg);
 
 
-        new Thread((Runnable) () -> {
+        new Thread(() -> {
             String wikiTitle="";
             StringBuilder sb = new StringBuilder();
             try {
-                String searchText = dogName;
-                Document doc = Jsoup.connect("https://www.google.com/search?q="+ searchText+"+dog+wikipedia&oq="+searchText +"+dog+wikipedia&sourceid=chrome&lr=lang_en&ie=UTF-8").get();
+                Document doc = Jsoup.connect("https://www.google.com/search?q="+ dogName +"+dog+wikipedia&oq="+ dogName +"+dog+wikipedia&sourceid=chrome&lr=lang_en&ie=UTF-8").get();
                 Elements links = doc.select("div.yuRUbf a");
                 Element link = links.get(0);
                 wikiTitle = link.attr("href");
