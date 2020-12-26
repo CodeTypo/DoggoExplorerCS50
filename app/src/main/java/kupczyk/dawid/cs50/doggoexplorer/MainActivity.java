@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,6 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,10 +30,12 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     JSONArray responseObject;
-    JSONObject entry;
     ArrayList<String> dogBreeds = new ArrayList<String>();
-    String dogOfTheMomentImgUrl = "";
-    int dogOfTheMomentId;
+    String imgUrl = "";
+    int id;
+    String name="";
+    List<Dog> dogList = new ArrayList<Dog>();
+    Dog dogOfTheMoment;
 
 
     @Override
@@ -57,12 +61,18 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         testText.setText("try");
                         responseObject = new JSONArray(response);
-                        entry = (JSONObject) responseObject.get((int)((Math.random() * (responseObject.length())) + 0));
-                        JSONObject weight = entry.getJSONObject("weight");
-                        testText.setText(entry.get("name").toString());
-                        dogOfTheMomentImgUrl = entry.getJSONObject("image").getString("url");
-                        dogOfTheMomentId = entry.getInt("id");
-                        Picasso.get().load(dogOfTheMomentImgUrl).into(dogOfTheMomentIV);
+                        for(int i = 0; i < responseObject.length()-1;i++){
+                            JSONObject entry = responseObject.getJSONObject(i);
+                            name = entry.get("name").toString();
+                            imgUrl = entry.getJSONObject("image").getString("url");
+                            id = entry.getInt("id");
+                            Dog dog = new Dog(id,name,imgUrl);
+                            dogList.add(dog);
+                        }
+
+                        dogOfTheMoment = dogList.get((int)(dogList.size() * Math.random())-1);
+                        testText.setText(dogOfTheMoment.getName());
+                        Picasso.get().load(dogOfTheMoment.getImageUrl()).into(dogOfTheMomentIV);
 
                         for(int i = 0; i < responseObject.length()-1; i++){
                             JSONObject sample = (JSONObject) responseObject.get(i);
@@ -90,14 +100,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void breedListBtnClicked(View view) {
         Intent i = new Intent(this, DogListActivity.class);
-        i.putStringArrayListExtra("breeds_list",dogBreeds);
+        i.putExtra("list", (Serializable) dogList);
         startActivity(i);
     }
 
     public void learnMoreBtnClicked(View view) {
         Intent i = new Intent(this, LearnMoreActivity.class);
-        i.putExtra("img_url",dogOfTheMomentImgUrl);
-        i.putExtra("dog_id", dogOfTheMomentId);
+        i.putExtra("dogObject",dogOfTheMoment);
         startActivity(i);
     }
 }

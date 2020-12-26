@@ -4,10 +4,5 @@
     <string name="dog_of_tm_IV_desc">A dog of the moment picture</string>
     <string name="learn_more_btn_lbl">Learn More</string>
     <string name="list_of_breeds_btn_lbl">List of breeds</string>
-    <string name="learnmore_bred_for_tv_label">Bred for: </string>
-    <string name="learnmore_breed_group_tv_label">Breed group: </string>
-    <string name="learnmore_life_span_tv_label">Life span: </string>
-    <string name="learnmore_temperament_tv_label">Temperament: </string>
-    <string name="learnmore_origin_tv_label">Origin: </string>
     <string name="a_picture_of_the_dog">A picture of the dog</string>
 </resources>
