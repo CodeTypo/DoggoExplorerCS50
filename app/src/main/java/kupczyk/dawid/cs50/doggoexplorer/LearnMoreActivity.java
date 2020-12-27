@@ -25,6 +25,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 
 public class LearnMoreActivity extends AppCompatActivity {
+    Dog dog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ public class LearnMoreActivity extends AppCompatActivity {
 
 
         Intent i = getIntent();
-        Dog dog = (Dog) i.getSerializableExtra("dogObject");
+        dog = (Dog) i.getSerializableExtra("dogObject");
         String img_url = dog.getImageUrl();
         if(img_url.isEmpty())img_url = "https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg";
         String dogName = dog.getName();
@@ -78,9 +79,10 @@ public class LearnMoreActivity extends AppCompatActivity {
                             JSONObject entry = new JSONObject(response);
                             JSONObject entryDeeper = entry.getJSONObject("query").getJSONObject("pages");
                             JSONObject entryDeepest = entryDeeper.getJSONObject((String)entryDeeper.keys().next());
-                            info[0] = entryDeepest.getString("extract");
-                            info[0] = info[0].replaceAll("<.*?>", "");
-                            wiki.setText(info[0].trim());
+                            addExtraData(info);
+                            String wikiDesc = (entryDeepest.getString("extract").replaceAll("<.*?>", "").trim());
+                            info[0] +="\n" + wikiDesc ;
+                            wiki.setText(info[0]);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -97,6 +99,24 @@ public class LearnMoreActivity extends AppCompatActivity {
 
         }).start();
 
+
+    }
+
+    private void addExtraData(String[] info) {
+        if(!dog.getHeight().isEmpty())
+            info[0]+= "Height:\t" + dog.getHeight() +" [cm]\n";
+        if(!dog.getWeight().isEmpty())
+            info[0]+= "Weight:\t" + dog.getWeight() +" [kg]\n";
+        if(!dog.getBred_for().isEmpty())
+            info[0]+= "Bred for:\t" + dog.getBred_for() +"\n";
+        if(!dog.getBreed_group().isEmpty())
+            info[0]+= "Breed group:\t" + dog.getBreed_group() +"\n";
+        if(!dog.getLife_span().isEmpty())
+            info[0]+= "Life span:\t" + dog.getLife_span() +"\n";
+        if(!dog.getOrigin().isEmpty())
+            info[0]+= "Origin:\t" + dog.getOrigin() +"\n";
+        if(!dog.getTemperament().isEmpty())
+            info[0]+= "Temperament:\t" + dog.getTemperament() +"\n";
 
     }
 }

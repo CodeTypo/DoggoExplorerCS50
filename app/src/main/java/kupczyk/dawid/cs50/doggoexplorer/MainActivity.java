@@ -51,12 +51,8 @@ public class MainActivity extends AppCompatActivity {
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 response -> {
-                    // Display the response string.
-                    testText.setText("Response is: "+ response.toString());
-
                     //Convert the response to JSONArray
                     try {
-                        testText.setText("try");
                         responseObject = new JSONArray(response);
                         for(int i = 0; i < responseObject.length()-1;i++){
                             JSONObject entry = responseObject.getJSONObject(i);
@@ -64,7 +60,25 @@ public class MainActivity extends AppCompatActivity {
                             imgUrl = entry.getJSONObject("image").getString("url");
                             id = entry.getInt("id");
                             Dog dog = new Dog(id,name,imgUrl);
-                            dogList.add(dog);
+                            if(entry.has("bred_for"))
+                                dog.setBred_for(entry.get("bred_for").toString());
+                            if(entry.has("breed_group"))
+                                dog.setBreed_group(entry.get("breed_group").toString());
+                            if(entry.has("life_span"))
+                                dog.setLife_span(entry.get("life_span").toString());
+                            if(entry.has("temperament"))
+                                dog.setTemperament(entry.get("temperament").toString());
+                            if(entry.has("origin"))
+                                dog.setOrigin(entry.get("origin").toString());
+                            if(entry.has("weight")) {
+                                JSONObject weight = entry.getJSONObject("weight");
+                                dog.setWeight(weight.get("metric").toString());
+                            }
+                            if(entry.has("height")) {
+                                JSONObject height = entry.getJSONObject("height");
+                                dog.setHeight(height.get("metric").toString());
+                            }
+                                dogList.add(dog);
                         }
 
                         dogOfTheMoment = dogList.get((int)(dogList.size() * Math.random())-1);

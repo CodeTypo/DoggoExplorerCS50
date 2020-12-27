@@ -20,4 +20,4 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
--keep class org.jsoup.*
+-keep class Gradle_org_jsoup_**
