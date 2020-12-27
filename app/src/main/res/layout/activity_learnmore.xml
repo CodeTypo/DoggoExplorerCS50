@@ -14,9 +14,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
-        android:textSize="26sp"
         android:gravity="center"
-        android:fontFamily="sans-serif-medium"
+        android:textSize="26sp"
+        android:fontFamily="@font/permanent_marker"
         />
 
     <ImageView

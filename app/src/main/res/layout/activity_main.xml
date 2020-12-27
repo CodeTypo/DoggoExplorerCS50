@@ -4,66 +4,86 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/testText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="388dp"
+        android:layout_marginTop="16dp"
         android:text="Introducing .... "
+        android:textSize="26sp"
+        android:fontFamily="@font/permanent_marker"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/dogOfTheMomentIV"
+        app:layout_constraintVertical_bias="0.072" />
 
     <ImageView
         android:id="@+id/dogOfTheMomentIV"
         android:layout_width="317dp"
         android:layout_height="297dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="16dp"
         android:contentDescription="@string/dog_of_tm_IV_desc"
-        app:layout_constraintBottom_toTopOf="@+id/testText"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.047"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="@string/dog_of_the_mom_tv"
-        app:layout_constraintBottom_toTopOf="@+id/dogOfTheMomentIV"
+        android:fontFamily="@font/permanent_marker"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.523" />
+        app:layout_constraintVertical_bias="0.049" />
 
     <Button
         android:id="@+id/LearnMoreBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/learn_more_btn_lbl"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:onClick="learnMoreBtnClicked"
+        android:text="@string/learn_more_btn_lbl"
+        android:textSize="20sp"
+        android:fontFamily="@font/bangers_regular"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/testText"
-        app:layout_constraintVertical_bias="0.097" />
+        app:layout_constraintVertical_bias="0.1" />
 
     <Button
         android:id="@+id/breedListBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/list_of_breeds_btn_lbl"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:onClick="breedListBtnClicked"
+        android:text="@string/list_of_breeds_btn_lbl"
+        android:textSize="20sp"
+        android:background="#EDBE77"
+        android:fontFamily="@font/bangers_regular"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LearnMoreBtn"
-        app:layout_constraintVertical_bias="0.136"
-        />
+        app:layout_constraintVertical_bias="0.132" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
