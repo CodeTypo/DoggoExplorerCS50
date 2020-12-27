@@ -11,13 +11,13 @@ public class Dog implements Serializable{
 
     //Optional fields, used only for printing additional data in the LearnMoreActivity
     //They are optional since not all entries in the API provide them all
-    private String  bred_for;
-    private String  breed_group;
-    private String  life_span;
-    private String  temperament;
-    private String  origin;
-    private String  weight;
-    private String  height;
+    private String  bred_for    ="";
+    private String  breed_group ="";
+    private String  life_span   ="";
+    private String  temperament ="";
+    private String  origin      ="";
+    private String  weight      ="";
+    private String  height      ="";
 
     //A Dog object constructor
     public Dog(int id, String name, String imageUrl) {
