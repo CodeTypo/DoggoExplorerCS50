@@ -33,8 +33,6 @@ public class LearnMoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learnmore);
 
-
-
         Intent i = getIntent();
         dog = (Dog) i.getSerializableExtra("dogObject");
         String img_url = dog.getImageUrl();
