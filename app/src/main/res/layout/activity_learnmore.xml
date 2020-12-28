@@ -24,6 +24,8 @@
         android:contentDescription="@string/a_picture_of_the_dog"
         android:layout_below="@+id/tvLearnMoreBreedName"
         tools:srcCompat="@tools:sample/avatars"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_height="270dp"
         android:layout_width="480dp"
         />

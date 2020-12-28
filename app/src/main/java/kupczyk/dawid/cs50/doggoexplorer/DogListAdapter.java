@@ -5,10 +5,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -53,16 +56,19 @@ public class DogListAdapter extends RecyclerView.Adapter<DogListAdapter.ViewHold
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final TextView textView;
+        private final ImageView imageView;
         onDogListener onDogListener;
 
         public ViewHolder(@NonNull View itemView,onDogListener onDogListener) {
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.tvDogName);
+            imageView = (ImageView) itemView.findViewById(R.id.tvDogImage);
             this.onDogListener = onDogListener;
             itemView.setOnClickListener(this);
         }
 
         public TextView getTextView(){return textView;}
+        public ImageView getImageView(){return imageView;}
 
         @Override
         public void onClick(View v) {
@@ -86,6 +92,7 @@ public class DogListAdapter extends RecyclerView.Adapter<DogListAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.getTextView().setText(dataSet.get(position).getName());
+        Picasso.get().load(dataSet.get(position).getImageUrl()).into(holder.getImageView());
     }
 
     @Override
