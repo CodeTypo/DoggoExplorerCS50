@@ -1,9 +1,11 @@
 package kupczyk.dawid.cs50.doggoexplorer;
 
 import android.content.Intent;
+import android.graphics.text.LineBreaker;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -44,6 +46,7 @@ public class LearnMoreActivity extends AppCompatActivity {
 
         ImageView dogImg    = (ImageView) findViewById(R.id.ivLearnMore);
         TextView wiki       = (TextView) findViewById(R.id.wiki);
+        wiki.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
         TextView breedName  = (TextView) findViewById(R.id.tvLearnMoreBreedName);
 
         breedName.setText(dogName);
@@ -110,27 +113,25 @@ public class LearnMoreActivity extends AppCompatActivity {
             runOnUiThread(() -> wiki.setText(info[0].trim()));
 
         }).start();
-
-
     }
 
     //A method checking if some additional fields in the Dog class are empty and where they are not,
     //adding the value stored underneath them to the dog description
     private void addExtraData(String[] info) {
         if(!dog.getHeight().isEmpty())
-            info[0]+= "Height:\t" + dog.getHeight() +" [cm]\n";
+            info[0]+= "Height:\t\t" + dog.getHeight() +" [cm]\n";
         if(!dog.getWeight().isEmpty())
-            info[0]+= "Weight:\t" + dog.getWeight() +" [kg]\n";
+            info[0]+= "Weight:\t\t" + dog.getWeight() +" [kg]\n";
         if(!dog.getBred_for().isEmpty())
-            info[0]+= "Bred for:\t" + dog.getBred_for() +"\n";
+            info[0]+= "Bred for:\t\t" + dog.getBred_for() +"\n";
         if(!dog.getBreed_group().isEmpty())
-            info[0]+= "Breed group:\t" + dog.getBreed_group() +"\n";
+            info[0]+= "Breed group:\t\t" + dog.getBreed_group() +"\n";
         if(!dog.getLife_span().isEmpty())
-            info[0]+= "Life span:\t" + dog.getLife_span() +"\n";
+            info[0]+= "Life span:\t\t" + dog.getLife_span() +"\n";
         if(!dog.getOrigin().isEmpty())
-            info[0]+= "Origin:\t" + dog.getOrigin() +"\n";
+            info[0]+= "Origin:\t\t" + dog.getOrigin() +"\n";
         if(!dog.getTemperament().isEmpty())
-            info[0]+= "Temperament:\t" + dog.getTemperament() +"\n";
+            info[0]+= "Temperament:\t\t" + dog.getTemperament() +"\n";
 
     }
 }
