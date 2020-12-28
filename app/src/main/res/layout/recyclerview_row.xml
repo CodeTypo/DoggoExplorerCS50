@@ -17,18 +17,17 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:background="#000000"
             android:id="@+id/tvDogImage"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp"
             android:layout_width="75dp"
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
             android:adjustViewBounds="true"
+            android:background="#000000"
             android:scaleType="fitXY"
-            android:src="@drawable/sample"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -37,8 +36,8 @@
             android:id="@+id/view"
             android:layout_width="1dp"
             android:layout_height="fill_parent"
-            android:background="#B8AA8D"
             android:layout_marginLeft="3dp"
+            android:background="#B8AA8D"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -51,29 +50,26 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:textSize="20sp"
             android:textAlignment="center"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/tvDogImage"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
+            android:id="@+id/imageButton"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:gravity="top|end"
             android:background="#FFFFFF"
+            android:gravity="top|end"
             android:src="@drawable/ic_favorite_gray"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tvDogName"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
