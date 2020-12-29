@@ -1,27 +1,41 @@
 package kupczyk.dawid.cs50.doggoexplorer;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class DogListActivity extends AppCompatActivity implements DogListAdapter.onDogListener {
     private ArrayList<Dog> dogList;
     DogListAdapter adapter;
+    private HashMap<String, Boolean> favourites = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        favourites = readFromSP();
         Intent intent = getIntent();
         dogList= (ArrayList<Dog>) intent.getSerializableExtra("list");
-        //getSupportActionBar().hide();
+        if(favourites.isEmpty()) {
+            for (Dog dog : dogList) {
+                favourites.put(dog.getName(), false);
+            }
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doglist);
 
@@ -52,9 +66,51 @@ public class DogListActivity extends AppCompatActivity implements DogListAdapter
     }
 
     @Override
-    public void onDogClicked(int position) {
-        Intent intent = new Intent(this, LearnMoreActivity.class);
-        intent.putExtra("dogObject",dogList.get(position));
-        startActivity(intent);
+    public void onDogClicked(View view, int position) {
+        if(view instanceof ImageButton){
+            ImageButton favButton = (ImageButton)view;
+            String name = dogList.get(position).getName();
+            if(favourites.containsKey(name)){
+                if(favourites.get(name)){
+                    favButton.setImageResource(R.drawable.ic_favorite_gray);
+                    favourites.put(name, false);
+                } else {
+                    favButton.setImageResource(R.drawable.ic_favorite_red);
+                    favourites.put(name, true);}
+            }
+
+        } else {
+            Intent intent = new Intent(this, LearnMoreActivity.class);
+            intent.putExtra("dogObject", dogList.get(position));
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    public boolean isfavourite(String name) {
+        return favourites.get(name);
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        insertToSP(favourites);
+    }
+
+    private void insertToSP(HashMap<String, Boolean> jsonMap) {
+        String jsonString = new Gson().toJson(jsonMap);
+        SharedPreferences sharedPreferences = getSharedPreferences("HashMap", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("map", jsonString);
+        editor.apply();
+    }
+
+    private HashMap<String, Boolean> readFromSP(){
+        SharedPreferences sharedPreferences = getSharedPreferences("HashMap", MODE_PRIVATE);
+        String defValue = new Gson().toJson(new HashMap<String, Boolean>());
+        String json=sharedPreferences.getString("map",defValue);
+        TypeToken<HashMap<String,Boolean>> token = new TypeToken<HashMap<String,Boolean>>() {};
+        return new Gson().fromJson(json,token.getType());
     }
 }

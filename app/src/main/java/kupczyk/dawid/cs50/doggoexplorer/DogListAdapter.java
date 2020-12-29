@@ -5,8 +5,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +24,13 @@ public class DogListAdapter extends RecyclerView.Adapter<DogListAdapter.ViewHold
     private final ArrayList<Dog> dataSet;
     private final ArrayList<Dog> dataSetFull;
     private final onDogListener mOnDogListener;
+
+    public DogListAdapter(ArrayList<Dog> dataSet, onDogListener onDogListener){
+        this.dataSet = dataSet;
+        this.dataSetFull = new ArrayList<>(dataSet);
+        this.mOnDogListener = onDogListener;
+
+    }
 
     @Override
     public Filter getFilter() {
@@ -57,30 +66,32 @@ public class DogListAdapter extends RecyclerView.Adapter<DogListAdapter.ViewHold
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final TextView textView;
         private final ImageView imageView;
+        private final ImageButton favButton;
         onDogListener onDogListener;
 
         public ViewHolder(@NonNull View itemView,onDogListener onDogListener) {
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.tvDogName);
             imageView = (ImageView) itemView.findViewById(R.id.tvDogImage);
+            favButton = (ImageButton) itemView.findViewById(R.id.favButton);
             this.onDogListener = onDogListener;
             itemView.setOnClickListener(this);
+            favButton.setOnClickListener(this);
+
         }
 
         public TextView getTextView(){return textView;}
         public ImageView getImageView(){return imageView;}
+        public ImageButton getFavButton() {
+            return favButton;
+        }
 
         @Override
         public void onClick(View v) {
-            onDogListener.onDogClicked(getAdapterPosition());
+            onDogListener.onDogClicked(v,getLayoutPosition());
         }
     } //end of viewholder
 
-    public DogListAdapter(ArrayList<Dog> dataSet, onDogListener onDogListener){
-        this.dataSet = dataSet;
-        this.dataSetFull = new ArrayList<>(dataSet);
-        this.mOnDogListener = onDogListener;
-    }
 
     @NonNull
     @Override
@@ -91,8 +102,14 @@ public class DogListAdapter extends RecyclerView.Adapter<DogListAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.getTextView().setText(dataSet.get(position).getName());
+        String name = dataSet.get(holder.getLayoutPosition()).getName();
+        //String name = dataSet.get(position).getName();
+        holder.getTextView().setText(name);
+        holder.getFavButton().setImageResource(R.drawable.ic_favorite_gray);
         Picasso.get().load(dataSet.get(position).getImageUrl()).into(holder.getImageView());
+        if(mOnDogListener.isfavourite(name)){
+            holder.getFavButton().setImageResource(R.drawable.ic_favorite_red);
+        }
     }
 
     @Override
@@ -101,7 +118,8 @@ public class DogListAdapter extends RecyclerView.Adapter<DogListAdapter.ViewHold
     }
 
     public interface onDogListener{
-        void onDogClicked(int position);
+        void onDogClicked(View view, int position);
+        boolean isfavourite(String name);
     }
 
 
