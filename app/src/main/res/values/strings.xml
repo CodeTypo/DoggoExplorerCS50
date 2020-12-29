@@ -5,4 +5,5 @@
     <string name="learn_more_btn_lbl">Learn More</string>
     <string name="list_of_breeds_btn_lbl">List of breeds</string>
     <string name="a_picture_of_the_dog">A picture of the dog</string>
+    <string name="dog_of_the_moment_loading">Introducing ....</string>
 </resources>

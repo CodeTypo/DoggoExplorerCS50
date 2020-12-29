@@ -3,16 +3,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#FFFFFF"
     android:layout_height="match_parent">
 
 
     <TextView
         android:id="@+id/tvLearnMoreBreedName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/rounded_corners_darker"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center"
         android:textSize="26sp"
         android:fontFamily="@font/permanent_marker"
@@ -33,20 +38,22 @@
 
     <ScrollView
         android:id="@+id/SCROLLER_ID"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="20dp"
         android:layout_below="@+id/ivLearnMore"
-        android:fillViewport="true">
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/rounded_corners"
+        android:fillViewport="true"
+        android:padding="10dp"
+        android:scrollbars="vertical">
 
         <TextView
+            android:id="@+id/wiki"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/wiki"/>
+            android:layout_height="wrap_content" />
     </ScrollView>
 
 </RelativeLayout>

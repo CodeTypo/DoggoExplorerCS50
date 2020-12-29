@@ -3,9 +3,7 @@ package kupczyk.dawid.cs50.doggoexplorer;
 import android.content.Intent;
 import android.graphics.text.LineBreaker;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
