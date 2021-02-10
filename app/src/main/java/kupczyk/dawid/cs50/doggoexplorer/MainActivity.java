@@ -25,6 +25,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * A Main activity appearing to the user as soon as he / she launches the app. It handles:
+ * - communication with the Dog API and populating the ArrayList of Dogs
+ * - Choosing a random dog image and presenting it to the user every time the app is launched
+ * - Responding to the "Learn More" button click
+ * - Responding to the "List of breeds" button click
+ */
 public class MainActivity extends AppCompatActivity {
 
     //An ArrayList of Dog objects thats going to be populated later on
@@ -39,6 +46,11 @@ public class MainActivity extends AppCompatActivity {
     private int id;
 
 
+    /**
+     * @param savedInstanceState savedInstanceState object - empty here
+     * Upon creating the activity, the app communicates with the API via Volley and populates
+     * the ArrayList of dogs with objects retrieved from the API call response.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
@@ -115,6 +127,11 @@ public class MainActivity extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
+    /**
+     * @param view
+     * When the user clicks the List of breeds button, he / she gets directed into new activity
+     * The list of dogs is being passed to it via the intent.
+     */
     //When the breedList button is being pressed, a new DogListActivity based on RecyclerView is being started
     public void breedListBtnClicked(View view) {
         Intent i = new Intent(this, DogListActivity.class);
@@ -122,8 +139,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    //When the breedList button is being pressed, a new LearnMoreActivity is being started having
-    //been passed the Dog of the moment object
+    /**
+     * @param view
+     * When the breedList button is being pressed, a new LearnMoreActivity is being started having
+     * been passed the Dog of the moment object (The randomly generated dog each time the app is launched)
+     */
     public void learnMoreBtnClicked(View view) {
         Intent i = new Intent(this, LearnMoreActivity.class);
         i.putExtra("dogObject",dogOfTheMoment);

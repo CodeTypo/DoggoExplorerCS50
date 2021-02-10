@@ -20,6 +20,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
+/**
+ * An activity consisting of a RecyclerView populated with clickable dog images as well as their
+ * breed names and a heart icons indicating if the dog belongs to the favourites list
+ */
 public class DogListActivity extends AppCompatActivity implements DogListAdapter.onDogListener {
     private ArrayList<Dog> dogList;
     DogListAdapter adapter;
@@ -64,6 +68,13 @@ public class DogListActivity extends AppCompatActivity implements DogListAdapter
         return super.onCreateOptionsMenu(menu);
     }
 
+    /**
+     * @param view the view that got clicked
+     * @param position the dog's position in the RecyclerView
+     *
+     * A method that executes whenever the users clicks on something inside the RecyclerView
+     * Handles different interactions (interactions vary depending on the view that got clicked)
+     */
     @Override
     public void onDogClicked(View view, int position) {
         if(view instanceof ImageButton){
@@ -85,6 +96,10 @@ public class DogListActivity extends AppCompatActivity implements DogListAdapter
         }
     }
 
+    /**
+     * @param name The dog breed name
+     * @return Boolean value indicating if the dog is in a list of favourites or not.
+     */
     @Override
     public boolean isfavourite(String name) {
         return favourites.get(name);
@@ -97,6 +112,12 @@ public class DogListActivity extends AppCompatActivity implements DogListAdapter
         insertToSP(favourites);
     }
 
+    /**
+     * @param jsonMap A HashMap<String, Boolean> containing information whether the dog breed was
+     *  selected as user's favourite or not.
+     *
+     *  This method is responsible of storing the HashMap of favourite dogs into SharedPreferences
+     */
     private void insertToSP(HashMap<String, Boolean> jsonMap) {
         String jsonString = new Gson().toJson(jsonMap);
         SharedPreferences sharedPreferences = getSharedPreferences("HashMap", MODE_PRIVATE);
@@ -105,6 +126,13 @@ public class DogListActivity extends AppCompatActivity implements DogListAdapter
         editor.apply();
     }
 
+
+    /**
+     * This method is responsible of storing the HashMap of favourite dogs into SharedPreferences
+     *
+     * @return A HashMap<String, Boolean> containing information whether the dog breed was
+     * selected as user's favourite or not.
+     */
     private HashMap<String, Boolean> readFromSP(){
         SharedPreferences sharedPreferences = getSharedPreferences("HashMap", MODE_PRIVATE);
         String defValue = new Gson().toJson(new HashMap<String, Boolean>());

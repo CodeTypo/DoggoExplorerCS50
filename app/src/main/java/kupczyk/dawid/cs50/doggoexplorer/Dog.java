@@ -2,6 +2,11 @@ package kupczyk.dawid.cs50.doggoexplorer;
 
 import java.io.Serializable;
 
+/**
+ * A class representing the Dog object. Every time a new dog JSON object is retrieved from the Dog
+ * API, the new instance of Dog object is being created. In the end, all of the dog objects are
+ * being stored inside an ArrayList.
+ */
 public class Dog implements Serializable{
 
     //Required class fields, every Dog needs to have those set correctly
@@ -19,6 +24,13 @@ public class Dog implements Serializable{
     private String  weight      ="";
     private String  height      ="";
 
+    /**
+     * A basic Dog constructor, not every class field is being initialised since some of the API entries
+     * doesn't contain any information about them.
+     * @param id an ID of the dog equal to the dog's ID in the API
+     * @param name the name of the dog breed
+     * @param imageUrl an URL to the source containing the image of the dog
+     */
     //A Dog object constructor
     public Dog(int id, String name, String imageUrl) {
         this.id = id;

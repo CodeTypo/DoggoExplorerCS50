@@ -18,6 +18,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * An adapter responsible for populating the RecyclerView with the data obtained from the ArrayList<Dog>
+ */
 public class DogListAdapter extends RecyclerView.Adapter<DogListAdapter.ViewHolder> implements Filterable {
 
     private final ArrayList<Dog> dataSet;
@@ -28,9 +31,11 @@ public class DogListAdapter extends RecyclerView.Adapter<DogListAdapter.ViewHold
         this.dataSet = dataSet;
         this.dataSetFull = new ArrayList<>(dataSet);
         this.mOnDogListener = onDogListener;
-
     }
 
+    /**
+     * @return a Filter with the capability of sorting the dogs regarding to their breed name
+     */
     @Override
     public Filter getFilter() {
         return filter;
@@ -54,6 +59,11 @@ public class DogListAdapter extends RecyclerView.Adapter<DogListAdapter.ViewHold
             return filterResults;
         }
 
+        /**
+         * @param constraint
+         * @param results
+         * A method responsible for publishing the filtering results inside the RecyclerView
+         */
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
                dataSet.clear();
@@ -76,7 +86,6 @@ public class DogListAdapter extends RecyclerView.Adapter<DogListAdapter.ViewHold
             this.onDogListener = onDogListener;
             itemView.setOnClickListener(this);
             favButton.setOnClickListener(this);
-
         }
 
         public TextView getTextView(){return textView;}
@@ -120,6 +129,4 @@ public class DogListAdapter extends RecyclerView.Adapter<DogListAdapter.ViewHold
         void onDogClicked(View view, int position);
         boolean isfavourite(String name);
     }
-
-
 }

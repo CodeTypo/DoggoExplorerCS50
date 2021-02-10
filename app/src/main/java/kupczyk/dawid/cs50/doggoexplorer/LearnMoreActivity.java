@@ -24,9 +24,22 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
+/**
+ * An activity that get launched whenever the user clicks the "Learn More" button on the main screen
+ * app. It consists of the dog of the moment image as well as the short description containing some
+ * basic information about the breed, gathered from the wikimedia API with the usage of Volley as
+ * well as JSoup HTML parser.
+ */
 public class LearnMoreActivity extends AppCompatActivity {
     Dog dog;
 
+    /**
+     * @param savedInstanceState
+     * The Overridden onCreate method is responsible for retrieving the dog object from the Intent,
+     * then using the JSoup parser to parse through google search results in search of the link to
+     * the Wikipedia article describing the dog. After that, the wikiMedia API is being called
+     * having been passed the exact title of the article obtained from Jsoup parsing.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
@@ -113,8 +126,11 @@ public class LearnMoreActivity extends AppCompatActivity {
         }).start();
     }
 
-    //A method checking if some additional fields in the Dog class are empty and where they are not,
-    //adding the value stored underneath them to the dog description
+    /**
+     * @param info a String containing information about the dog obtained from the Wikipedia.
+     * A method checking if some additional fields in the Dog class are empty and where they are not,
+     * adding the value stored underneath them to the dog description
+     */
     private void addExtraData(String[] info) {
         if(!dog.getHeight().isEmpty())
             info[0]+= "Height:\t\t" + dog.getHeight() +" [cm]\n";
