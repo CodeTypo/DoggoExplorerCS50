@@ -1,4 +1,4 @@
-# DoggoExplorerCS50
+# DoggoExplorer
 This repository contains an Android app called "Doggo Explorer" made by me, Dawid Kupczyk, as a final project for the CS50: Introduction to Computer Science 2020 Course on EdX.
 After that, I got it adapted to meet the requirements of my academic programming course final project task.
 
