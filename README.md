@@ -1,5 +1,6 @@
 # DoggoExplorerCS50
 This repository contains an Android app called "Doggo Explorer" made by me, Dawid Kupczyk, as a final project for the CS50: Introduction to Computer Science 2020 Course on EdX.
+After that, I got it adapted to meet the requirements of my academic programming course final project task.
 
 This application is a collection of dog breeds and some basic information about each single one of them. 
 The app makes use of "TheDogAPI - Dogs as a Service" for collecting some basic information about dog breeds as well as Wikimedia REST API for some more detailed descriptions.
