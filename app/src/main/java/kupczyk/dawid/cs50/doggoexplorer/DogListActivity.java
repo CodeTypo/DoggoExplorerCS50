@@ -48,6 +48,11 @@ public class DogListActivity extends AppCompatActivity implements DogListAdapter
         recyclerView.setAdapter(adapter);
     }
 
+    /**
+     * @param menu a menu object
+     * @return
+     * An overridden onCreateOptionsMenu method - added custom search bar support
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu,menu);
@@ -106,6 +111,9 @@ public class DogListActivity extends AppCompatActivity implements DogListAdapter
     }
 
 
+    /**
+     * Overridden onDestroy method - added a call to the instertToSP method.
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();
