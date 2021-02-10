@@ -14,7 +14,7 @@ The LearnMore Activity consists of:
 - a TextView displaying the name of the breed of the dog we are interested in
 - an ImageView populated with the image of the dog. The dog image url is obtained from TheDogAPI
 - a ScrollView containing some additional information about the breed like: life span, origin, (...), if they were provided by the API (sometimes they are not)
-- a ScrollView is additionaly populated with a first paragraph of text from Wikipedia article abot this breed, which is obtained from Wikimedia REST API,
+- a ScrollView is additionally populated with a first paragraph of text from Wikipedia article abot this breed, which is obtained from Wikimedia REST API,
   the title of this article, which is necessary to make a Wikimedia API call is obtained by using Jsoup to look for the first result of googling "[dog name] + dog wikipedia"
   and then parsing the search results in specific way to get the access to the first result URL.
 
